@@ -1,2 +1,3 @@
-# dell-interview-test
-Interview task for dell emc
+# Dell Emc Test Task
+
+Todo project from meteor tutorial plus some improvements
