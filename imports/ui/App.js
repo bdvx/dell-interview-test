@@ -46,15 +46,16 @@ class App extends Component {
 
     const date = ReactDOM.findDOMNode(this.refs.datePicker).childNodes[0].childNodes[0].value;
     ReactDOM.findDOMNode(this.refs.textInput).focus();   
-    console.log(date);
+    this.refs.textInputValidation.innerHTML = '';
+    this.refs.dateInputValidation.innerHTML = '';
 
-    if(!text.match(/^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$/g))
-    { console.log('Task name does not meet all requirements:\n-At least 5 characters,spaces allowed only between words');
+    if(!text.match(/^[a-zA-Z0-9_]{5,}( [a-zA-Z0-9_]+)*$/g))
+    { this.refs.textInputValidation.innerHTML = 'Task name does not meet all requirements:\n-At least 5 characters,spaces allowed only between words';
       return;
     }
     if(!moment(date,'MMMM D, YYYY HH:mm').isValid())
     {
-      console.log('Creation date invalid format:\n-Must be e.g. June 28, 2019 15:00');
+      this.refs.dateInputValidation.innerHTML ='Creation date invalid format:\n-Must be e.g. June 28, 2019 15:00';
       return;
     }
 
@@ -176,8 +177,10 @@ class App extends Component {
                 type="text"
                 ref="textInput"
                 placeholder="Type to add new tasks, then press Enter or Create button"
+                
               />
-
+              <div ref="textInputValidation" class="validationMessage">
+              </div>
               <div>
               <div className="priority_title">
                 <h5 className="">Set priority:</h5>
@@ -209,6 +212,8 @@ class App extends Component {
                 dateFormat="MMMM d, yyyy hh:mm"
                 timeCaption="time"
               />
+              <div ref="dateInputValidation" class="validationMessage">
+              </div>
             </div>
 
               <button type="submit" className="createButton">Create</button>

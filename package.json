@@ -1,5 +1,5 @@
 {
-  "name": "dell-interview-test",
+  "name": "simple-todos-react",
   "private": true,
   "scripts": {
     "start": "meteor run",
